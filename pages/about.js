@@ -24,15 +24,14 @@ export default function About({ data }) {
     };
   } */
 
-  export async function getStaticProps({ params: { slug } }) {
+  export async function getStaticProps({}) {
     const about = await fetchDataFromApi(
-        `/api/about?filters[slug][$eq]=${slug}`
+        `/api/about`
     );
 
     return {
         props: {
             about,
-            slug,
         },
     };
 }
