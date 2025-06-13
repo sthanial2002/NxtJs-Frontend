@@ -10,25 +10,29 @@ export default function About({ data }) {
     );
 }
 
-export async function getStaticProps({}) {
-    const res = await fetchDataFromApi(
-        `/api/about?populate=*&filters[slug][$eq]=${slug}`
+export async function getStaticPaths() {
+    const about = await fetchDataFromApi("/api/about?populate=*");
+    const paths = about?.data?.map((c) => ({
+      params: {
+        slug: c.slug,
+      },
+    }));
+  
+    return {
+      paths,
+      fallback: false,
+    };
+  }
+
+  export async function getStaticProps({ params: { slug } }) {
+    const about = await fetchDataFromApi(
+        `/api/about?filters[slug][$eq]=${slug}`
     );
-    const json = await res.json();
-
-    //console.log('Résultat brut Strapi:', JSON.stringify(json, null, 2)); // 👈 log complet de la réponse
-    console.log('Contenu de data[0]:', json.data?.[0]);
-
-    if (!json.data || !json.data[0]) {
-        return {
-            notFound: true,
-        };
-    }
 
     return {
         props: {
-            data: json.data[0].title,
+            about,
+            slug,
         },
-        revalidate: 60,
     };
 }
