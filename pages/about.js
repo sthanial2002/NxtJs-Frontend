@@ -27,11 +27,14 @@ export async function getStaticProps() {
     const res = await fetchDataFromApi("/api/about");
 
     const about = res?.data;
+    const richTextBlock = about?.blocks?.find(
+        (block) => block.__component === "shared.rich-text"
+      );
 
     return {
         props: {
             titre: about?.title || "À propos",
-            body: about?.blocks?.[0]?.body || "<p>Contenu indisponible.</p>",
+            body: richTextBlock?.body || "<p>Contenu indisponible.</p>",
         },
     };
 }
