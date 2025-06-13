@@ -10,7 +10,7 @@ export default function About({ data }) {
     );
 }
 
-export async function getStaticPaths() {
+/* export async function getStaticPaths() {
     const about = await fetchDataFromApi("/api/about?populate=*");
     const paths = about?.data?.map((c) => ({
       params: {
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
       paths,
       fallback: false,
     };
-  }
+  } */
 
   export async function getStaticProps({ params: { slug } }) {
     const about = await fetchDataFromApi(
