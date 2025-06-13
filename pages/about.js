@@ -1,37 +1,37 @@
 import React from "react";
+import Wrapper from "@/components/Wrapper";
 import { fetchDataFromApi } from "@/utils/api";
 
-export default function About({ data }) {
+const About = ({ titre, body }) => {
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">{data.title}</h1>
-            <div dangerouslySetInnerHTML={{ __html: data.content }} />
+        <div className="w-full md:py-20">
+            <Wrapper>
+                <div className="max-w-4xl mx-auto px-4">
+                    <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+                        {titre}
+                    </h1>
+
+                    <div
+                        className="prose prose-lg max-w-none"
+                        dangerouslySetInnerHTML={{ __html: body }}
+                    />
+                </div>
+            </Wrapper>
         </div>
     );
-}
+};
 
-/* export async function getStaticPaths() {
-    const about = await fetchDataFromApi("/api/about?populate=*");
-    const paths = about?.data?.map((c) => ({
-      params: {
-        slug: c.slug,
-      },
-    }));
-  
-    return {
-      paths,
-      fallback: false,
-    };
-  } */
+export default About;
 
-  export async function getStaticProps({}) {
-    const about = await fetchDataFromApi(
-        `/api/about`
-    );
+export async function getStaticProps() {
+    const res = await fetchDataFromApi("/api/about");
+
+    const about = res?.data;
 
     return {
         props: {
-            about,
+            titre: about?.title || "À propos",
+            body: about?.blocks?.[0]?.body || "<p>Contenu indisponible.</p>",
         },
     };
 }
