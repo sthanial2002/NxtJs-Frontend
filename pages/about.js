@@ -10,8 +10,8 @@ export default function About({ data }) {
 }
 
 export async function getStaticProps({}) {
-    const res = await fetch(
-        `http://localhost:1337/api/about?populate=*`
+    const res = await fetchDataFromApi(
+        `/api/about?populate=*&filters[slug][$eq]=${slug}`
     );
     const json = await res.json();
 
