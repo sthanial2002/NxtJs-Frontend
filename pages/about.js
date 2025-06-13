@@ -34,7 +34,7 @@ export async function getStaticProps() {
     return {
         props: {
             titre: about?.title || "À propos",
-            body: richTextBlock?.body || "🎯 Développeur Web & Mobile – Expert Full Stack avec +10 ans d'expérience. Ingénieur en Génie Logiciel passionné par les technologies du Web et du Mobile, je mets à disposition plus de 10 années d’expertise pour concevoir des solutions performantes, sur mesure et évolutives. Mon approche repose sur une compréhension fine des besoins métiers, une maîtrise technique avancée et une forte capacité d’adaptation. Je vous accompagne à chaque étape de votre projet : de l’analyse fonctionnelle à la mise en ligne, en passant par le développement, l’optimisation et le support."
+            body: about?.body || "🎯 Développeur Web & Mobile – Expert Full Stack avec +10 ans d'expérience. Ingénieur en Génie Logiciel passionné par les technologies du Web et du Mobile, je mets à disposition plus de 10 années d’expertise pour concevoir des solutions performantes, sur mesure et évolutives. Mon approche repose sur une compréhension fine des besoins métiers, une maîtrise technique avancée et une forte capacité d’adaptation. Je vous accompagne à chaque étape de votre projet : de l’analyse fonctionnelle à la mise en ligne, en passant par le développement, l’optimisation et le support."
         },
     };
 }
