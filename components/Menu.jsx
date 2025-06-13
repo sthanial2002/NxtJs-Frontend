@@ -3,9 +3,9 @@ import Link from "next/link";
 import { BsChevronDown } from "react-icons/bs";
 
 const menuItems = [
-    /* { id: 1, name: "Home", url: "/" },
+    { id: 1, name: "Home", url: "/" },
     { id: 2, name: "About", url: "/about" },
-    { id: 3, name: "Contact", url: "/contact" }, */
+    //{ id: 3, name: "Contact", url: "/contact" }, 
 ];
 
 const Menu = ({ showCatMenu, setShowCatMenu, categories }) => {
