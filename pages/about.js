@@ -1,4 +1,5 @@
 import React from "react";
+import { fetchDataFromApi } from "@/utils/api";
 
 export default function About({ data }) {
     return (

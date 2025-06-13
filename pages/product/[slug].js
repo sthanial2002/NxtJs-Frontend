@@ -183,9 +183,6 @@ export async function getStaticProps({ params: { slug } }) {
   const product = await fetchDataFromApi(
     `/api/products?populate=*&filters[slug][$eq]=${slug}`
   );
-  const products = await fetchDataFromApi(
-    `/api/products?populate=*&filters[slug][$ne]=${slug}`
-  );
 
   return {
     props: {
